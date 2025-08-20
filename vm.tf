@@ -1,5 +1,5 @@
 resource "google_compute_instance" "vm_instance" {
-  name         = "aurora-vm"
+  name         = "my-vm-instance"
   machine_type = "e2-micro"
   zone         = "us-central1-a"
   project      = "caramel-spot-460614-c7"
@@ -7,8 +7,7 @@ resource "google_compute_instance" "vm_instance" {
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-11"
-      size  = 20
-      type  = "pd-standard"
+      size  = 10
     }
   }
 
@@ -28,7 +27,7 @@ resource "google_compute_instance" "vm_instance" {
       apt-get install -y nginx
       systemctl start nginx
       systemctl enable nginx
-      echo "<h1>VM deployed successfully on GCP!</h1>" > /var/www/html/index.html
+      echo "<h1>Hello from GCP VM!</h1>" > /var/www/html/index.html
     EOF
   }
 }
