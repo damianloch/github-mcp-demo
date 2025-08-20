@@ -1,5 +1,9 @@
+resource "random_id" "vm_suffix" {
+  byte_length = 4
+}
+
 resource "google_compute_instance" "vm_instance" {
-  name         = "terraform-vm"
+  name         = "terraform-vm-${random_id.vm_suffix.hex}"
   machine_type = "e2-micro"
   zone         = "us-central1-a"
   project      = "caramel-spot-460614-c7"
